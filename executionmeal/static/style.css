@@ -1,0 +1,80 @@
+body            { font-family: sans-serif; background: #eee; }
+a, h1, h2       { color: #341A03 }
+h1, h2          { font-family: 'Georgia', serif; margin: 0; }
+/* h1              { border-bottom: 2px solid #eee; } */
+h2              { font-size: 1.2em; }
+p               { font-size: 0.8em; }
+
+label 			{ display: inline-block; width: 200px; text-align: left; padding-top: 5px;}
+
+.page           { margin: 2em auto; width: 50em; border: 0px solid #ccc;
+                  padding: 0.8em; background: #FEFCFF; }
+.meal           { display: inline-block; width: 400px; text-align: left; padding-top: 5px;}
+.entries        { list-style: none; margin: 0; padding: 0; }
+.entries li     { margin: 0.8em 1.2em; }
+.entries li h2  { margin-left: -1em; }
+.add-entry      { font-size: 0.9em; border-bottom: 1px solid #ccc; }
+.add-entry dl   { font-weight: bold; }
+/*.add-entry dd   { display: block; margin-left: 10px; } */
+
+.metanav        { text-align: right; font-size: 0.8em; padding: 0.3em;
+                  margin-bottom: 1em; background: #fafafa; }
+/*.flash          { background: #D3D3D3; padding: 0.5em;
+                  border: 1px solid #667987; }*/
+.error          { background: #f0d6d6; padding: 0.5em; }
+.radiobutton 	{ display: inline-block; width: 150px; text-align: left; padding-top: 5px;}
+.intro 			{ color: #AB977D;}
+
+
+.style-4 input[type="text"] {
+  padding: 10px;
+  border: none;
+  border-bottom: solid 2px #c9c9c9;
+  transition: border 0.3s;
+}
+.style-4 input[type="text"]:focus,
+.style-4 input[type="text"].focus {
+  border-bottom: solid 1px #969696;
+}
+
+.button4 {
+    background-color: white;
+    color: black;
+}
+
+ .button4:hover {background-color: #e7e7e7;} 
+
+.button {
+    background-color: #D1D0CE; /* Gray */
+    border-radius: 10px;
+    border: none;
+    color: black;
+    padding: 6px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    outline:none; 
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.2s; /* Safari */
+    transition-duration: 0.2s;
+    cursor: pointer;
+}
+
+
+img.desaturate {
+	-webkit-filter: sepia(70%);
+	filter: sepia(70%);
+	border-radius: 25px;
+}
+
+label.radiobutton > input{ /* HIDE RADIO */
+  visibility: hidden; /* Makes input not-clickable */
+  position: absolute; /* Remove input from document flow */
+}
+label.radiobutton > input + img{ /* IMAGE STYLES */
+  cursor:pointer;
+  border:3px solid transparent;
+}
+label.radiobutton > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
+  border:3px solid #999999;
+}

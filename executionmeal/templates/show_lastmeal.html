@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block body %}
+
+
+  {% if session.logged_in %}
+    <img src=/static/img/ned-execution.png width=350 class='desaturate' align=right>
+    <h1>The Execution Meal</h1>
+    <p>You're slated to be killed in 24 hours.<br>
+    There's only one thing left on your mind...<br>
+    What will your last meal be?<br>  
+    <p>&nbsp;</p>
+
+
+    <h2 > {{ entry.first_name }}'s Last Meal on Earth</h2>
+    <label class=meal for="drink_non_alcoholic">Non-Alcoholic Drink: {{ entry.drink_non_alcoholic }}</label><br />
+    <label class=meal for="drink_alcoholic">Alcoholic Drink: {{ entry.drink_alcoholic }}</label><br />
+    <label class=meal for="appetizer">Appetizer: {{ entry.appetizer }}</label><br />
+    <label class=meal for="entree">Entree:  {{ entry.entree }}</label><br />
+    <label class=meal for="side_1">Side #1: {{ entry.side_1 }}</label><br />
+    <label class=meal for="side_2">Side #2: {{ entry.side_2 }}</label><br />
+    <label class=meal for="dessert">Dessert: {{ entry.dessert }}</label><br /> <br>
+    <label class=meal for="how_die">I want to be killed by {{ entry.how_die }}</label><br /> 
+    <label class=meal for="lastmeal_image"><img property="og:image" src={{ entry.image_name }}></label>
+
+
+  {% endif %}
+
+    <p><a href='/'>Back</a></p>
+
+  <p></p>
+
+  
+  <!-- Go to www.addthis.com/dashboard to customize your tools -->
+  <div class="addthis_sharing_toolbox"></div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-575fe8f340fc75db"></script>
+  
+{% endblock %}

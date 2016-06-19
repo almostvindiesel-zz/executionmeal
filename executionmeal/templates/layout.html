@@ -1,0 +1,39 @@
+<!doctype html>
+
+<head>
+  <title>The Execution Meal</title>
+  <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+
+  <meta property="og:type"          content="website" />
+
+  {% if entry %}
+    {% if entry.lastmeal_id %}
+        <meta property="og:image"  content="http://localhost:5000/static/img/ned-execution.png"/>
+      <!-- <meta property="og:url"       content="url_for('show_lastmeal', lastmeal_id='lastmeal_id')" />-->
+      <!-- <meta property="og:image"         content="{{ entry.image_name }}" /> -->
+       <meta property="og:image"  content="http://static2.businessinsider.com/image/55e5cb7d9dd7cc1e008b7520-960/screen%20shot%202015-09-01%20at%208.59.17%20am.png" />
+
+
+      <meta property="og:title"         content="{{ entry.first_name }}'s Last Meal on Earth" />
+      <meta property="og:description"   content="{{ entry.first_name }} is slated to be killed in 24 hours and has one request--his execution meal. The last alcoholic drink that {{ entry.first_name }} will drink is {{ entry.drink_alcoholic }}. But what did {{ entry.first_name }} eat? Click to find out..." />
+    {% endif %}
+  {% endif %}
+
+
+</head>
+<div class=page>
+
+  <div class=metanav>
+  {% if not session.logged_in %}
+    <a href="{{ url_for('login') }}">log in</a>
+  {% else %}
+    <a href="{{ url_for('logout') }}">log out</a>
+  {% endif %}
+  </div>
+  
+  {% for message in get_flashed_messages() %}
+  <div class=flash>{{ message }}</div>
+  {% endfor %}
+  
+  {% block body %}{% endblock %}
+</div>

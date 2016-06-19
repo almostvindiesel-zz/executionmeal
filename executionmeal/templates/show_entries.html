@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+{% block body %}
+
+  {% if session.logged_in %}
+    <img src=/static/img/ned-execution.png width=350 class='desaturate' align=right>
+    <h1>The Execution Meal</h1>
+    You're slated to be killed in 24 hours.<br>
+    There's only one thing left on your mind...<br>
+    What will your last meal be?<br>  
+    <p>&nbsp;</p>
+
+    
+    <form action="{{ url_for('add_entry') }}" method=post enctype='multipart/form-data' class=add-entry>
+
+        <h3>Step 1 of 4: Enter your first name and final beverages of choice:</h3>
+        <label for="first_name">Your name:</label>
+          <input type="text" size=50 name='first_name' value='{{ session.first_name }}'><br />
+        <label for="drink_non_alcoholic">Non-Alcoholic Drink:</label>
+          <input type="text" size=50 name='drink_non_alcoholic' value='{{ session.drink_non_alcoholic }}'><br />
+        <label for="drink_alcoholic">Alcoholic Drink:</label>
+          <input type="text" size=50 name='drink_alcoholic' value='{{ session.drink_alcoholic }}'><br />
+
+        {% if session.step1_complete %}
+        <h3>Step 2 of 4: What will you eat?</h3>
+        <label for="appetizer">Appetizer:</label>
+          <input type="text" size=50 name='appetizer' value='{{ session.appetizer }}'><br />
+        <label for="entree">Entree:</label>
+          <input type="text" size=50 name='entree' value='{{ session.entree }}'><br />
+        <label for="side_1">Side #1</label>
+          <input type="text" size=50 name='side_1' value='{{ session.side_1 }}'><br />
+        <label for="side_2">Side #2:</label>
+          <input type="text" size=50 name='side_2' value='{{ session.side_2 }}'><br />
+        {% endif %}
+
+        {% if session.step2_complete %}
+        <h3>Step 3 of 4: End it on a sweet note?</h3>
+        <label for="dessert">Dessert:</label>
+          <input type="text" size=50 name='dessert' value='{{ session.dessert }}'><br />
+        <label for="how_die">I want to be killed by:</label>
+          <input type="text" size=50 name='how_die' value='{{ session.how_die }}'><br />
+        {% endif %}
+
+        {% if session.step3_complete %}
+        <h3>Step 4 of 4: Which Image Best Describes Your Meal? (Select One)</h3>
+        <form action="" method=post enctype=multipart/form-data>
+          {% for item in getty_images %}
+            <label class='radiobutton'><input type=radio name='lastmeal_image' value="{{ item }}" /> <img src={{ item }} width=150></label>
+          {% endfor %}
+        <!--
+          <label for="lastmeal_image">Last Meal Image:</label>
+          <input type=file name=file>
+        -->
+        {% endif %}
+
+
+        {% if session.step3_complete %}
+          <br><input type=submit value='Submit Meal' class="button button4">
+        {% else %}
+          <br><input type=submit value='Next Step' class="button button4">
+        {% endif %}
+        <br><br><br><br>
+
+    </form>
+
+  {% endif %}
+
+  <p></p>
+  
+  {% if session.step1_complete %}
+    <h1>How Others Ate Their Last Meal</h1>
+    <ul class=entries>
+    {% for entry in entries %}
+      <li><p>
+        <a href='/lastmeal/{{ entry.lastmeal_id }}'><img style='vertical-align:middle' src={{ entry.image_name|safe }} width=50></a>
+        {{ entry.first_name }} drank {{ entry.drink_non_alcoholic }}, ate {{ entry.entree|safe }}, and died via {{ entry.how_die|safe }}
+      </p></li>
+    {% else %}
+      <li><em>Unbelievable.  No entries here so far</em>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endblock %}

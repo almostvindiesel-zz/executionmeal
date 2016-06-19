@@ -1,0 +1,4 @@
+flask
+flask-RESTful
+flask-sqlalchemy
+requests
